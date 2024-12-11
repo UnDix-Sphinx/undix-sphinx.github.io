@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.Undix.Undix",
+      "sha256_cert_fingerprints": [
+        "92:69:BA:C0:18:80:FE:C7:F9:08:9A:C2:E4:95:8C:6C:96:3F:FC:0C:AB:37:CA:3A:3A:27:0E:16:5C:BA:2A:4D"
+      ]
+    }
+  }
+]
