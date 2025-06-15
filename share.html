@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Undix</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <h1>Handling Share Link...</h1>
+  <div id="output"></div>
+
+  <script>
+    // Get query string
+    const params = new URLSearchParams(window.location.search);
+    const code = [...params.keys()][0]; // Just grab the first key like abcd-efgh
+
+    if (code) {
+      document.getElementById("output").innerHTML = `
+        <p>You shared code: <strong>${code}</strong></p>
+        <p>This could trigger a redirect or show some app content.</p>
+      `;
+    } else {
+      document.getElementById("output").textContent = "No code provided in the URL.";
+    }
+  </script>
+</body>
+</html>
