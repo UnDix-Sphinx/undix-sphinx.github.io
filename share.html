@@ -2,27 +2,46 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Undix</title>
+  <title>Redirecting...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="refresh" content="0; url=https://play.google.com/store/apps/details?id=com.Undix.Undix" />
 </head>
 <body>
-  <h1>Handling Share Link...</h1>
-  <div id="output"></div>
+  <h1>Redirecting to app store...</h1>
+  <p>If you are not redirected, <a id="storeLink" href="#">click here</a>.</p>
 
   <script>
-    // Get query string
-    const params = new URLSearchParams(window.location.search);
-    const code = [...params.keys()][0]; // Just grab the first key like abcd-efgh
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-    if (code) {
-      document.getElementById("output").innerHTML = `
-        <p>You shared code: <strong>${code}</strong></p>
-        <p>This could trigger a redirect or show some app content.</p>
-      `;
-    } else {
-      document.getElementById("output").textContent = "No code provided in the URL.";
+    // Replace with your actual store URLs
+    const androidUrl = "https://play.google.com/store/apps/details?id=com.Undix.Undix";
+    const iosUrl = "https://apps.apple.com/fr/app/undix/id6503408227";
+
+    // Determine platform
+    function isAndroid() {
+      return /android/i.test(userAgent);
     }
+
+    function isIOS() {
+      return /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+    }
+
+    let targetUrl = "#";
+
+    if (isAndroid()) {
+      targetUrl = androidUrl;
+    } else if (isIOS()) {
+      targetUrl = iosUrl;
+    } else {
+      document.body.innerHTML += `<p>Unknown device — please visit your app store manually.</p>`;
+    }
+
+    // Update fallback link
+    document.getElementById("storeLink").href = targetUrl;
+
+    // Redirect after short delay
+    setTimeout(() => {
+      window.location.href = targetUrl;
+    }, 1000);
   </script>
 </body>
 </html>
